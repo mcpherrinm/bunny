@@ -10,15 +10,42 @@ charwidth=8
 charheight=13
 
 charset=[]
-charmap=[" ", "@", "/", "t", "(", "%", "G", "~",
-         "O","^", "C", "s", "#", "7"]
+charmap=[' ', '@', '~', 't', '(', '%', '^', 's',
+         '/', 'C', 'G', 'O', '#', '7']
 
-def printchar(c):
+def printchar(c, char):
   if c < len(charmap):
     sys.stdout.write(charmap[c])
   else:
-    print "unknown", c
+    print_unknown(char)
     sys.exit(1)
+
+
+def print_unknown(char):
+  matrix = [[0 for x in xrange(20)] for x in xrange(20)]
+  i = 0
+  for c in char:
+    x = i / 11
+    y = i % 11
+    matrix[y][x] = c
+    i += 1
+
+  print
+  print "unknown:"
+  print "'''"
+  for y in range(len(matrix)):
+    for x in range(len(matrix[y])):
+      c = matrix[y][x]
+      if c == 1:
+        pixel = ' '
+      elif c == 0:
+        pixel = '#'
+      else:
+        raise
+      sys.stdout.write(pixel)
+    print
+  print "'''"
+
 
 print "import time"
 for imagename in images:
@@ -36,6 +63,6 @@ for imagename in images:
           char.append(image.getpixel((charcol, charrow)))
       if not char in charset:
         charset.append(char)
-      printchar(charset.index(char))
+      printchar(charset.index(char), char)
     print
   print "\"\"\""
