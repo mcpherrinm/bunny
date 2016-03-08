@@ -4,7 +4,7 @@ twitter, and failed to find the origins of via the internet.
  * bunny.py is a python script that runs in a terminal
  * bunny.html is html/js for the browser
 
-See the html version at http://mcpherrin.ca/bunny/bunny.html
+See the html version at https://mcpherrinm.github.io/bunny/
 
 Run `convert -coalesce bunny.gif frame_%03d.gif && python extract.py` to
 rebuild the bunny.py script.
